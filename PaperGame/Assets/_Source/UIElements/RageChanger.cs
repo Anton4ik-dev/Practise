@@ -11,6 +11,8 @@ public class RageChanger : MonoBehaviour, IPointerDownHandler
     private bool _isRaged;
     private Swiper _swiper;
 
+    public int RageChance = 1;
+
     [Inject]
     public void Construct(Swiper swiper)
     {
@@ -32,7 +34,14 @@ public class RageChanger : MonoBehaviour, IPointerDownHandler
 
     public void AddRage()
     {
-        _rageSlider.value++;
+        switch (Random.Range(0, RageChance))
+        {
+            case 0:
+                _rageSlider.value++;
+                break;
+            case 1:
+                break;
+        }
         if(_rageSlider.value == _rageSlider.maxValue)
         {
             _isRaged = true;

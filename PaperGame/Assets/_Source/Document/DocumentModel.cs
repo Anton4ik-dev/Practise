@@ -35,7 +35,7 @@ namespace Document
 
         private void CreateRight()
         {
-            if (_repeatingRight < 3)
+            if (_repeatingRight < 2)
             {
                 _repeatingRight++;
                 _isFake = false;
@@ -48,7 +48,7 @@ namespace Document
 
         private void CreateFake()
         {
-            if (_repeatingFake < 3)
+            if (_repeatingFake < 2)
             {
                 _repeatingFake++;
                 _isFake = true;

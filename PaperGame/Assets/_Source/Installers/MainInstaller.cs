@@ -16,6 +16,7 @@ public class MainInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<QualityFactory>().AsSingle();
+        Container.Bind<HeaderFactory>().AsSingle();
         Container.Bind<MarkFactory>().AsSingle();
         Container.Bind<DateFactory>().AsSingle();
         Container.Bind<DataFactory>().AsSingle();

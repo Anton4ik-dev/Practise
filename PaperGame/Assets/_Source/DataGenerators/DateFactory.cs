@@ -11,38 +11,41 @@ namespace DataFactories
         private int _dateRange;
         private DateTime _date;
         private DateSO _dateSO;
-        private TextMeshProUGUI _dateClocks;
+        private bool _canBeWithMistake = false;
 
-        public DateFactory(DateSO dateSO, TextMeshProUGUI dateClocks)
+        public DateFactory(DateSO dateSO)
         {
             _dateSO = dateSO;
-            _dateClocks = dateClocks;
             _dateRange = _dateSO.HowMuchYears * ONE_YEAR;
-            ChangeDate();
         }
 
-        public void CreateDate(TextMeshProUGUI dateText, bool isError = false)
+        public bool CreateDate(TextMeshProUGUI dateText, bool isError = false)
         {
             DateTime newDate = _date;
-            if (isError)
+            if (isError == true && _canBeWithMistake == true)
             {
-                switch (Random.Range(0, 2))
-                {
-                    case 0:
-                        newDate = _date.AddDays(-Random.Range(0, _dateRange));
-                        break;
-                    case 1:
-                        dateText.text = "";
-                        return;
-                }
+                newDate = _date.AddDays(Random.Range(0, _dateRange));
+                dateText.text = $"{newDate.Day}.{newDate.Month}.{newDate.Year}";
+                return false;
             }
             dateText.text = $"{newDate.Day}.{newDate.Month}.{newDate.Year}";
+            return true;
         }
 
-        public void ChangeDate()
+        public string WriteMessage()
         {
             _date = _dateSO.Date;
-            _dateClocks.text = $"{_date.Day}.{_date.Month}.{_date.Year}";
+            return $"{_date.Day}.{_date.Month}.{_date.Year}";
+        }
+
+        public void SetMistake()
+        {
+            _canBeWithMistake = true;
+        }
+
+        public void ResetMistake()
+        {
+            _canBeWithMistake = false;
         }
     }
 }

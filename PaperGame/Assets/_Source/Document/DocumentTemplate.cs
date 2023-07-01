@@ -8,6 +8,7 @@ namespace Document
     {
         [SerializeField] private TextMeshProUGUI _date;
         [SerializeField] private GameObject _mark;
+        [SerializeField] private GameObject _header;
         [SerializeField] private List<GameObject> _scratches;
 
         public TextMeshProUGUI Date
@@ -25,6 +26,15 @@ namespace Document
             set
             {
                 _mark = value;
+            }
+        }
+
+        public GameObject Header
+        {
+            get => _header;
+            set
+            {
+                _header = value;
             }
         }
 
